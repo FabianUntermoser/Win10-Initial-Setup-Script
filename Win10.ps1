@@ -11,6 +11,14 @@ $tweaks = @(
 	"RequireAdmin",
 
 	### Privacy Settings ###
+	"DisableLanguageListAccess",	# Custom Setting
+	"DisableCameraAccess",			# Custom Setting
+	"DisableMicrophoneAccess",		# Custom Setting
+	"DisableAccountAccess",			# Custom Setting
+	"DisableCalenderAccess",		# Custom Setting
+	"DisableMessagesAccess",		# Custom Setting
+	"DisableRadioAccess",			# Custom Setting
+	"DisableDeviceSyncAccess",		# Custom Setting
 	"DisableTelemetry",             # "EnableTelemetry",
 	"DisableWiFiSense",             # "EnableWiFiSense",
 	# "DisableSmartScreen",         # "EnableSmartScreen",
@@ -140,6 +148,57 @@ $tweaks = @(
 ##########
 # Privacy Settings
 ##########
+
+# Disable Local Language List Access to Websites
+Function DisableLanguageListAccess {
+	Write-Host "Disabling Language List Access..."
+	if ((Get-ItemProperty -Path "HKCU:SOFTWARE\Microsoft\Internet Explorer\International\" -Name AcceptLanguage -ErrorAction SilentlyContinue) -ne $null) {
+		Remove-ItemProperty -Path "HKCU:SOFTWARE\Microsoft\Internet Explorer\International" -Name "AcceptLanguage" -Force 
+	}
+    Set-ItemProperty -Path "HKCU:Control Panel\International\User Profile" -Name HttpAcceptLanguageOptOut -Value 1 -ErrorAction SilentlyContinue | Out-Null
+}
+
+# Disable App Access to camera
+Function DisableCameraAccess {
+	Write-Host "Disabling Camera Access..."
+	Set-ItemProperty -Path "HKCU:SOFTWARE\Microsoft\Windows\CurrentVersion\DeviceAccess\Global\{E5323777-F976-4f5b-9B55-B94699C46E44}" -Name Value -Value "Deny" -ErrorAction SilentlyContinue | Out-Null
+}
+
+# Disable App Access to microphone
+Function DisableMicrophoneAccess {
+	Write-Host "Disabling Microphone Access..."
+	Set-ItemProperty -Path "HKCU:SOFTWARE\Microsoft\Windows\CurrentVersion\DeviceAccess\Global\{2EEF81BE-33FA-4800-9670-1CD474972C3F}\" -Name Value -Value "Deny" -ErrorAction SilentlyContinue | Out-Null
+}
+
+# Disable App Access to account info
+Function DisableAccountAccess {
+	Write-Host "Disabling Account Info Access..."
+	Set-ItemProperty -Path "HKCU:SOFTWARE\Microsoft\Windows\CurrentVersion\DeviceAccess\Global\{C1D23ACC-752B-43E5-8448-8D0E519CD6D6}\" -Name Value -Value "Deny" -ErrorAction SilentlyContinue | Out-Null
+}
+
+# Disable App Access to Calender
+Function DisableCalenderAccess {
+	Write-Host "Disabling Calender Access..."
+	Set-ItemProperty -Path "HKCU:SOFTWARE\Microsoft\Windows\CurrentVersion\DeviceAccess\Global\{D89823BA-7180-4B81-B50C-7E471E6121A3}\" -Name Value -Value "Deny" -ErrorAction SilentlyContinue | Out-Null
+}
+
+# Disable App Access to Messages
+Function DisableMessagesAccess {
+	Write-Host "Disabling Messages Access..."
+	Set-ItemProperty -Path "HKCU:SOFTWARE\Microsoft\Windows\CurrentVersion\DeviceAccess\Global\{992AFA70-6F47-4148-B3E9-3003349C1548}\" -Name Value -Value "Deny" -ErrorAction SilentlyContinue | Out-Null
+}
+
+# Disable Radio Access
+Function DisableRadioAccess {
+	Write-Host "Disabling Radio Access..."
+	Set-ItemProperty -Path "HKCU:SOFTWARE\Microsoft\Windows\CurrentVersion\DeviceAccess\Global\{A8804298-2D5F-42E3-9531-9C8C39EB29CE}\" -Name Value -Value "Deny" -ErrorAction SilentlyContinue | Out-Null
+}
+
+# Disable Device Sync Access
+Function DisableDeviceSyncAccess {
+	Write-Host "Disabling Device Access..."
+	Set-ItemProperty -Path "HKCU:SOFTWARE\Microsoft\Windows\CurrentVersion\DeviceAccess\Global\LooselyCoupled\" -Name Value -Value "Deny" -ErrorAction SilentlyContinue | Out-Null
+}
 
 # Disable Telemetry
 Function DisableTelemetry {
