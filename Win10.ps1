@@ -110,11 +110,11 @@ $tweaks = @(
 	"SetCurrentNetworkPrivate",     # "SetCurrentNetworkPublic",
 	# "SetUnknownNetworksPrivate",  # "SetUnknownNetworksPublic",
 	# "DisableNetDevicesAutoInst",  # "EnableNetDevicesAutoInst",
-	# "EnableCtrldFolderAccess",    # "DisableCtrldFolderAccess",
+	"EnableCtrldFolderAccess",      # "DisableCtrldFolderAccess",
 	# "DisableFirewall",            # "EnableFirewall",
 	# "DisableDefender",            # "EnableDefender",
-	# "DisableDefenderCloud",       # "EnableDefenderCloud",
-	# "DisableUpdateMSRT",          # "EnableUpdateMSRT",
+	"DisableDefenderCloud",         # "EnableDefenderCloud",
+	"DisableUpdateMSRT",            # "EnableUpdateMSRT",
 	# "DisableUpdateDriver",        # "EnableUpdateDriver",
 	"DisableUpdateRestart",         # "EnableUpdateRestart",
 	"DisableHomeGroups",            # "EnableHomeGroups",
@@ -131,7 +131,7 @@ $tweaks = @(
 	# "EnableHibernation",          # "DisableHibernation",
 	# "DisableSleepButton",         # "EnableSleepButton",
 	# "DisableSleepTimeout",        # "EnableSleepTimeout",
-	# "DisableFastStartup",         # "EnableFastStartup",
+	"DisableFastStartup",           # "EnableFastStartup",
 
 	### Server Specific Tweaks ###
 	# "HideServerManagerOnLogin",   # "ShowServerManagerOnLogin",
