@@ -1,3 +1,3 @@
 chcp 1252
-powershell –ExecutionPolicy Bypass -File "Win10-customization.ps1"
+powershell ï¿½ExecutionPolicy Bypass -File "Win10.ps1"
 PAUSE
