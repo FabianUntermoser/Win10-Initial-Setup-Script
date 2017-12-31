@@ -586,13 +586,25 @@ Function EnableSMB1 {
 # Set current network profile to private (allow file sharing, device discovery, etc.)
 Function SetCurrentNetworkPrivate {
 	Write-Host "Setting current network profile to private..."
+	WaitForNetProfileToLoad
 	Set-NetConnectionProfile -NetworkCategory Private
 }
 
 # Set current network profile to public (deny file sharing, device discovery, etc.)
 Function SetCurrentNetworkPublic {
 	Write-Host "Setting current network profile to public..."
+	WaitForNetProfileToLoad
 	Set-NetConnectionProfile -NetworkCategory Public
+}
+
+Function WaitForNetProfileToLoad(){
+	$loopCounter = 0
+	while ((Get-NetConnectionProfile).Name -eq "Netzwerkidentifizierung...") {
+	   Start-Sleep -s 3
+	   Get-NetConnectionProfile
+	   $loopCounter++
+	   if ($loopCounter -eq 10) { break }
+	}
 }
 
 # Set unknown networks profile to private (allow file sharing, device discovery, etc.)
