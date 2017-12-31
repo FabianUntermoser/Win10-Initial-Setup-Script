@@ -601,7 +601,6 @@ Function WaitForNetProfileToLoad(){
 	$loopCounter = 0
 	while ((Get-NetConnectionProfile).Name -eq "Netzwerkidentifizierung...") {
 	   Start-Sleep -s 3
-	   Get-NetConnectionProfile
 	   $loopCounter++
 	   if ($loopCounter -eq 10) { break }
 	}
