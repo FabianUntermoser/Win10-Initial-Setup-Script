@@ -35,7 +35,7 @@ $tweaks = @(
 	"SetP2PUpdateLocal",            # "SetP2PUpdateInternet",
 	"DisableAutoLogger",            # "EnableAutoLogger",
 	"DisableDiagTrack",             # "EnableDiagTrack",
-	"DisableWAPPush",               # "EnableWAPPush",
+	# "DisableWAPPush",               # "EnableWAPPush",
 
 	### UI Tweaks ###
 	"DisableActionCenter",          # "EnableActionCenter",
@@ -512,14 +512,14 @@ Function EnableDiagTrack {
 	Start-Service "DiagTrack" -WarningAction SilentlyContinue
 }
 
-# Stop and disable WAP Push Service
+# Stop and disable WAP Push Service -> sysprep.exe will hang
 Function DisableWAPPush {
 	Write-Host "Stopping and disabling WAP Push Service..."
 	Stop-Service "dmwappushservice" -WarningAction SilentlyContinue
 	Set-Service "dmwappushservice" -StartupType Disabled
 }
 
-# Enable and start WAP Push Service
+# Enable and start WAP Push Service -> sysprep.exe will not hang
 Function EnableWAPPush {
 	Write-Host "Enabling and starting WAP Push Service..."
 	Set-Service "dmwappushservice" -StartupType Automatic
