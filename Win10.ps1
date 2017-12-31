@@ -121,6 +121,7 @@ $tweaks = @(
 	# "UninstallWindowsStore",      # "InstallWindowsStore",
 	"DisableXboxFeatures",          # "EnableXboxFeatures",
 	"DisableAdobeFlash",            # "EnableAdobeFlash",
+	"UninstallFeatureXPS",			# Custom Feature Removal
 	# "UninstallMediaPlayer",       # "InstallMediaPlayer",
 	# "UninstallWorkFolders",       # "InstallWorkFolders",
 	# "InstallLinuxSubsystem",      # "UninstallLinuxSubsystem",
@@ -1887,6 +1888,13 @@ Function EnableAdobeFlash {
 	Write-Host "Enabling built-in Adobe Flash in IE and Edge..."
 	Remove-ItemProperty -Path "HKCU:\Software\Classes\Local Settings\Software\Microsoft\Windows\CurrentVersion\AppContainer\Storage\microsoft.microsoftedge_8wekyb3d8bbwe\MicrosoftEdge\Addons" -Name "FlashPlayerEnabled" -ErrorAction SilentlyContinue
 	Remove-ItemProperty -Path "HKCU:\Software\Microsoft\Windows\CurrentVersion\Ext\Settings\{D27CDB6E-AE6D-11CF-96B8-444553540000}" -Name "Flags" -ErrorAction SilentlyContinue
+}
+
+# Uninstall XPS-Viewer and XPS-Services
+Function UninstallFeatureXPS {
+	Write-Host "Uninstalling XPS-Features..."
+	Disable-WindowsOptionalFeature -Online -FeatureName "Xps-Foundation-Xps-Viewer" -NoRestart -WarningAction SilentlyContinue | Out-Null
+	Disable-WindowsOptionalFeature -Online -FeatureName "Printing-XPSServices-Features" -NoRestart -WarningAction SilentlyContinue | Out-Null
 }
 
 # Uninstall Windows Media Player
